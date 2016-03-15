@@ -39,7 +39,7 @@ class GameScene: SKScene {
         circleNode.physicsBody = SKPhysicsBody()
         circleNode.physicsBody?.dynamic = false
         if motionManager.accelerometerAvailable {
-            motionManager.accelerometerUpdateInterval = 0.01
+            motionManager.accelerometerUpdateInterval = 0.1
             motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: { (data, error) -> Void in
                 self.destX = self.circleNode.position.x + CGFloat(data!.acceleration.x*100)
                 self.destY = self.circleNode.position.y + CGFloat(data!.acceleration.y*200)
@@ -49,8 +49,8 @@ class GameScene: SKScene {
     }
     
     override func update(currentTime: NSTimeInterval) {
-        let destXAction = SKAction.moveToX(destX, duration: 0.01)
-        let destYAction = SKAction.moveToY(destY, duration: 0.01)
+        let destXAction = SKAction.moveToX(destX, duration: 0.1)
+        let destYAction = SKAction.moveToY(destY, duration: 0.1)
         self.circleNode.runAction(destXAction)
         self.circleNode.runAction(destYAction)
     }
